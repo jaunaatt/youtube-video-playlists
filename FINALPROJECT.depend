@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1765812651 source:d:\code\c++\finalproject\main.cpp
+	"playlist.h"
+
+1765817150 d:\code\c++\finalproject\playlist.h
+	<iostream>
+	<string>
+
+1765812232 source:d:\code\c++\finalproject\playlist.cpp
+	"playlist.h"
+
+1765868779 source:c:\users\jauna\onedrive\desktop\college\sem3\strukdat\final project\finalproject\finalproject\main.cpp
+	"playlist.h"
+
+1765873402 c:\users\jauna\onedrive\desktop\college\sem3\strukdat\final project\finalproject\finalproject\playlist.h
+	<iostream>
+	<string>
+
