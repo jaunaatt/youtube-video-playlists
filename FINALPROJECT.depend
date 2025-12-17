@@ -9,10 +9,11 @@
 1765812232 source:d:\code\c++\finalproject\playlist.cpp
 	"playlist.h"
 
-1765868779 source:c:\users\jauna\onedrive\desktop\college\sem3\strukdat\final project\finalproject\finalproject\main.cpp
+1765964927 source:c:\users\jauna\onedrive\desktop\college\sem3\strukdat\final project\finalproject\finalproject\main.cpp
+	<iostream>
 	"playlist.h"
 
-1765873402 c:\users\jauna\onedrive\desktop\college\sem3\strukdat\final project\finalproject\finalproject\playlist.h
+1765963301 c:\users\jauna\onedrive\desktop\college\sem3\strukdat\final project\finalproject\finalproject\playlist.h
 	<iostream>
 	<string>
 

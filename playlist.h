@@ -52,12 +52,13 @@ adrVideo createElementVideo(string title, string id, string category);
 void addPlaylist(ListPlaylist &L, adrPlaylist p);
 void addVideoFirst(adrPlaylist p, adrVideo v);
 void addVideoLast(adrPlaylist p, adrVideo v);
-void addVideoAfter(adrPlaylist p, adrVideo v, string afterVideoId);
+void addVideoAfter(adrPlaylist p, adrVideo v, string VideoId);
 
 adrPlaylist searchPlaylist(ListPlaylist L, string playlistId);
 adrVideo searchVideo(adrPlaylist p, string videoId);
 
-void deleteVideo(adrPlaylist p, string afterVideoId);
+void deleteVideo(adrPlaylist p, string VideoId);
+void deleteVideoFirst(adrPlaylist p);
 
 void deletePlaylist(ListPlaylist &L, string playlistId);
 

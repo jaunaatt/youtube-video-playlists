@@ -1,4 +1,6 @@
+#include <iostream>
 #include "playlist.h"
+using namespace std;
 
 void showMenu() {
     cout << "\n===== VIDEO PLAYLIST MANAGEMENT SYSTEM =====" << endl;
@@ -17,25 +19,29 @@ int main() {
     ListPlaylist L;
     createListPlaylist(L);
 
-    // Add some sample playlists
-    adrPlaylist p1 = createElementPlaylist("Gaming", "P001");
-    adrPlaylist p2 = createElementPlaylist("Educational", "P002");
+    adrPlaylist p1 = createElementPlaylist("Materi_Kuliah", "P001");
     addPlaylist(L, p1);
+    // Isi video ke Playlist 1
+    addVideoLast(p1, createElementVideo("Intro_C++", "V001", "Educational"));
+    addVideoLast(p1, createElementVideo("Linked_List", "V002", "Educational"));
+    addVideoLast(p1, createElementVideo("Stack_Queue", "V003", "Educational"));
+
+    // 2. Buat Playlist Kedua: Hiburan Weekend
+    adrPlaylist p2 = createElementPlaylist("Hiburan_Weekend", "P002");
     addPlaylist(L, p2);
+    // Isi video ke Playlist 2
+    addVideoLast(p2, createElementVideo("Minecraft_Survival", "V004", "Gaming"));
+    addVideoLast(p2, createElementVideo("Daily_Vlog_Japan", "V005", "Vlog"));
 
-    // Add some sample videos
-    adrVideo v1 = createElementVideo("GameReview", "V001", "Gaming");
-    adrVideo v2 = createElementVideo("TravelVlog", "V002", "Vlog");
-    adrVideo v3 = createElementVideo("DataStructures", "V003", "Educational");
-    adrVideo v4 = createElementVideo("ChillMusic", "V004", "Music");
-
-    addVideoFirst(p1, v1);
-    addVideoLast(p1, v2);
-    addVideoFirst(p2, v3);
-    addVideoLast(p2, v4);
-
+    // 3. Buat Playlist Ketiga: Musik Fokus
+    adrPlaylist p3 = createElementPlaylist("Musik_Fokus", "P003");
+    addPlaylist(L, p3);
+    // Isi video ke Playlist 3
+    addVideoLast(p3, createElementVideo("Lofi_Beats", "V006", "Music"));
+    addVideoLast(p3, createElementVideo("Piano_Classic", "V007", "Music"));
+    
     int choice;
-    string name, id, category, playlistId, afterVideoId;
+    string name, id, category, playlistId, VideoId;
     int addChoice, deleteChoice;
 
     do {
@@ -83,9 +89,9 @@ int main() {
                         cout << "Video added at the end." << endl;
                     } else if (addChoice == 3) {
                         cout << "Enter video ID to add after: ";
-                        cin >> afterVideoId;
-                        addVideoAfter(targetPlaylist, newVideo, afterVideoId);
-                        cout << "Video added after video ID: " << afterVideoId << endl;
+                        cin >> VideoId;
+                        addVideoAfter(targetPlaylist, newVideo, VideoId);
+                        cout << "Video added after video ID: " << VideoId << endl;
                     }
                 } else {
                     cout << "Playlist not found!" << endl;
@@ -101,10 +107,11 @@ int main() {
                 adrPlaylist targetPlaylist = searchPlaylist(L, playlistId);
                 if (targetPlaylist != nullptr) {
                         cout << "Enter video ID to delete: ";
-                        cin >> afterVideoId;
-                        deleteVideoAfter(targetPlaylist, afterVideoId);
-                        cout << "Video deleted after video ID: " << afterVideoId << endl;
-                    }
+                        cin >> VideoId;
+                        deleteVideo(targetPlaylist, VideoId);
+                        cout << "Video deleted ID: " << VideoId << endl;
+                        break;
+                    
                 } else {
                     cout << "Playlist not found!" << endl;
                 }

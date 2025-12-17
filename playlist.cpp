@@ -117,17 +117,36 @@ adrVideo searchVideo(adrPlaylist p, string videoId) {
 }
 
 // Delete specific video in a playlist
-void deleteVideo(adrPlaylist p, string afterVideoId) {
-    if (!isEmptyVideo(p)) {
-        adrVideo current = searchVideo(p, afterVideoId);
+void deleteVideo(adrPlaylist p, string videoId) {
+    if (isEmptyVideo(p)) return;
+    
+    adrVideo current = searchVideo(p, videoId);
+    if (current == nullptr) return;  // Video not found
+    
+    // Update previous pointer
+    if (current->prev != nullptr) {
+        current->prev->next = current->next;
+    } else {
+        // current is the first video
+        p->firstVideo = current->next;
+    }
+    
+    // Update next pointer
+    if (current->next != nullptr) {
+        current->next->prev = current->prev;
+    }
+    
+    delete current;
+}
 
-        if (current != nullptr && current->next != nullptr) {
-            adrVideo prevC = current->prev;
-            prevC->next = current->next;
-            current->next->prev = prevC;
-
-            delete current;
+void deleteVideoFirst(adrPlaylist p){
+    if (p->firstVideo != nullptr){
+        adrVideo temp = p->firstVideo;
+        p->firstVideo = temp->next;
+        if (p->firstVideo != nullptr) {
+            p->firstVideo->prev = nullptr;
         }
+        delete temp;
     }
 }
 
