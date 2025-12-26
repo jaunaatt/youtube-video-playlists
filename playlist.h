@@ -47,7 +47,7 @@ bool isEmptyPlaylist(ListPlaylist L);
 bool isEmptyVideo(adrPlaylist p);
 
 adrPlaylist createElementPlaylist(string name, string playlistId);
-adrVideo createElementVideo(string title, string id, string category);
+adrVideo createElementVideo(adrVideo prevVideo, string title, string id, string category);
 
 void addPlaylist(ListPlaylist &L, adrPlaylist p);
 void addVideoFirst(adrPlaylist p, adrVideo v);

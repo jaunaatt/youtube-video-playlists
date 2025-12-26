@@ -24,25 +24,50 @@ adrPlaylist createElementPlaylist(string name, string playlistId) {
     return p;
 }
 
-adrVideo createElementVideo(string title, string id, string category) {
+adrVideo createElementVideo(adrVideo prevVideo, string title, string id, string category) {
+    
+    // Check only against the previous video
+    if (prevVideo != nullptr && prevVideo->info.id == id) {
+        cout << "Error: Video ID '" << id << "' is the same as previous video!" << endl;
+        return nullptr;
+    }
+    
     adrVideo v = new elementVideo;
     v->info.title = title;
     v->info.id = id;
     v->info.category = category;
     v->next = nullptr;
-    v->prev = nullptr;
+    v->prev = prevVideo;
+    
+    // Link previous to this new one
+    if (prevVideo != nullptr) {
+        prevVideo->next = v;
+    }
+    
     return v;
 }
 
 // Add playlist to the end of the list
-void addPlaylist(ListPlaylist &L, adrPlaylist p) {
-    if (isEmptyPlaylist(L)) {
-        L.first = p;
-        L.last = p;
+void addPlaylist(ListPlaylist &L, adrPlaylist pl) {
+    // Check if playlist ID already exists in the list
+    adrPlaylist current = L.first;
+    while (current != nullptr) {
+        if (current->info.playlistId == pl->info.playlistId) {
+            cout << "Error: Playlist ID '" << pl->info.playlistId << "' already exists!" << endl;
+            delete pl;  // Free the memory since we won't use it
+            return;
+        }
+        current = current->next;
+    }
+    
+    // Add to list if ID is unique
+    if (L.first == nullptr) {
+        L.first = pl;
+        L.last = pl;
     } else {
-        L.last->next = p;
-        p->prev = L.last;
-        L.last = p;
+        L.last->next = pl;
+        pl->prev = L.last;
+        L.last = pl;
     }
 }
 
