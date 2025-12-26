@@ -24,26 +24,14 @@ adrPlaylist createElementPlaylist(string name, string playlistId) {
     return p;
 }
 
-adrVideo createElementVideo(adrVideo prevVideo, string title, string id, string category) {
-    
-    // Check only against the previous video
-    if (prevVideo != nullptr && prevVideo->info.id == id) {
-        cout << "Error: Video ID '" << id << "' is the same as previous video!" << endl;
-        return nullptr;
-    }
-    
+adrVideo createElementVideo(string title, string id, string category) {
+    // SIMPLE VERSION - just create, don't check duplicates here
     adrVideo v = new elementVideo;
     v->info.title = title;
     v->info.id = id;
     v->info.category = category;
     v->next = nullptr;
-    v->prev = prevVideo;
-    
-    // Link previous to this new one
-    if (prevVideo != nullptr) {
-        prevVideo->next = v;
-    }
-    
+    v->prev = nullptr;
     return v;
 }
 

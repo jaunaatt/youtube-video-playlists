@@ -50,16 +50,24 @@ int main() {
 
         switch (choice) {
             case 1: { // Create Playlist
-                cout << "\n--- Create New Playlist ---" << endl;
-                cout << "Enter playlist name (no spaces): ";
-                cin >> name;
-                cout << "Enter playlist ID: ";
-                cin >> id;
-
-                adrPlaylist newPlaylist = createElementPlaylist(name, id);
-                addPlaylist(L, newPlaylist);
-                cout << "Playlist created successfully!" << endl;
-                break;
+              cout << "\n--- Create New Playlist ---" << endl;
+                // Show current playlists FIRST
+                 cout << "\nCurrent playlists before adding:" << endl;
+            adrPlaylist temp = L.first;
+            while (temp != nullptr) {
+                cout << "- " << temp->info.name << " (" << temp->info.playlistId << ")" << endl;
+                temp = temp->next;
+            }
+            
+            cout << "\nEnter playlist name: ";
+            cin >> name;
+            cout << "Enter playlist ID: ";
+            cin >> id;
+            
+            adrPlaylist newPlaylist = createElementPlaylist(name, id);
+            addPlaylist(L, newPlaylist);
+            
+            break;
             }
 
             case 2: { // Add Video to Playlist
