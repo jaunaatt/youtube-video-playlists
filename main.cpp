@@ -66,7 +66,7 @@ int main() {
             
             adrPlaylist newPlaylist = createElementPlaylist(name, id);
             addPlaylist(L, newPlaylist);
-            
+            cout << "Playlist created successfully!" << endl;
             break;
             }
 
