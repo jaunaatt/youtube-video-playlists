@@ -3,7 +3,7 @@
 A C++ console application designed to manage and organize YouTube video playlists. This project was developed as part of the Data Structures (StrukDat) course to demonstrate the practical application of linked lists and file management.
 
 ## 🚀 Features
-
+- **Add Playlists:** Insert new playlist into the list with a name and Playlist ID.
 - **Add Videos:** Insert new videos into the playlist with a Title and Video ID.
 - **Delete Videos:** Remove specific videos from the list by title or ID.
 - **Display Playlist:** View all videos currently in the queue.
