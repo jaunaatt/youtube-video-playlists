@@ -53,6 +53,7 @@ void addPlaylist(ListPlaylist &L, adrPlaylist p);
 void addVideoFirst(adrPlaylist p, adrVideo v);
 void addVideoLast(adrPlaylist p, adrVideo v);
 void addVideoAfter(adrPlaylist p, adrVideo v, string VideoId);
+bool checkDuplicateVideo(adrPlaylist p, adrVideo v);
 
 adrPlaylist searchPlaylist(ListPlaylist L, string playlistId);
 adrVideo searchVideo(adrPlaylist p, string videoId);

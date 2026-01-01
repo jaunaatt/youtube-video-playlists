@@ -59,8 +59,24 @@ void addPlaylist(ListPlaylist &L, adrPlaylist pl) {
     }
 }
 
+bool checkDuplicateVideo(adrPlaylist p, adrVideo v) {
+    adrVideo current = p->firstVideo;
+    while (current != nullptr) {
+        if (current->info.id == v->info.id) {
+            return true;
+        }
+        current = current->next;
+    }
+    return false;
+}
 // Add video at the beginning of a playlist
 void addVideoFirst(adrPlaylist p, adrVideo v) {
+    if (checkDuplicateVideo(p, v)) {
+        cout << "Error: Video ID '" << v->info.id << "' already exists!" << endl;
+        delete v;
+        return;
+    }
+
     if (isEmptyVideo(p)) {
         p->firstVideo = v;
     } else {
@@ -72,6 +88,12 @@ void addVideoFirst(adrPlaylist p, adrVideo v) {
 
 // Add video at the end of a playlist
 void addVideoLast(adrPlaylist p, adrVideo v) {
+    if (checkDuplicateVideo(p, v)) {
+        cout << "Error: Video ID '" << v->info.id << "' already exists!" << endl;
+        delete v;
+        return;
+    }
+
     if (isEmptyVideo(p)) {
         p->firstVideo = v;
     } else {
@@ -86,6 +108,12 @@ void addVideoLast(adrPlaylist p, adrVideo v) {
 
 // Add video after a specific video in a playlist
 void addVideoAfter(adrPlaylist p, adrVideo v, string afterVideoId) {
+    if (checkDuplicateVideo(p, v)) {
+        cout << "Error: Video ID '" << v->info.id << "' already exists!" << endl;
+        delete v;
+        return;
+    }
+    
     if (!isEmptyVideo(p)) {
         adrVideo current = p->firstVideo;
         while (current != nullptr && current->info.id != afterVideoId) {
